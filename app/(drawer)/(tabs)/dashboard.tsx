@@ -58,6 +58,15 @@ export default function Dashboard() {
       >
         <Text style={styles.buttonText}>Survey History</Text>
       </Pressable>
+      <Text
+  style={{
+    marginTop: 30,
+    color: "gray",
+    textAlign: "center",
+  }}
+>
+  Developed using React Native & Expo
+</Text>
     </ScrollView>
   );
 }

@@ -1,4 +1,5 @@
 import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function TabLayout() {
   return (
@@ -7,6 +8,9 @@ export default function TabLayout() {
         name="dashboard"
         options={{
           title: "Dashboard",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" color={color} size={size} />
+          ),
         }}
       />
 
@@ -14,6 +18,9 @@ export default function TabLayout() {
         name="survey"
         options={{
           title: "Survey",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="document-text" color={color} size={size} />
+          ),
         }}
       />
 
@@ -21,6 +28,9 @@ export default function TabLayout() {
         name="history"
         options={{
           title: "History",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="time" color={color} size={size} />
+          ),
         }}
       />
 
@@ -28,6 +38,9 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" color={color} size={size} />
+          ),
         }}
       />
     </Tabs>

@@ -8,6 +8,7 @@ import {
   Pressable,
   RefreshControl,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import * as Contacts from "expo-contacts";
 import * as Clipboard from "expo-clipboard";
@@ -17,26 +18,32 @@ export default function ContactsScreen() {
   const [filteredContacts, setFilteredContacts] = useState<Contacts.Contact[]>([]);
   const [search, setSearch] = useState("");
   const [refreshing, setRefreshing] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadContacts();
   }, []);
 
   async function loadContacts() {
-    const { status } = await Contacts.requestPermissionsAsync();
+  setLoading(true);
 
-    if (status !== "granted") {
-      Alert.alert("Permission Denied", "Contacts permission is required.");
-      return;
-    }
+  const { status } = await Contacts.requestPermissionsAsync();
 
-    const { data } = await Contacts.getContactsAsync({
-      fields: [Contacts.Fields.PhoneNumbers],
-    });
-
-    setContacts(data);
-    setFilteredContacts(data);
+  if (status !== "granted") {
+    Alert.alert("Permission Denied", "Contacts permission is required.");
+    setLoading(false);
+    return;
   }
+
+  const { data } = await Contacts.getContactsAsync({
+    fields: [Contacts.Fields.PhoneNumbers],
+  });
+
+  setContacts(data);
+  setFilteredContacts(data);
+
+  setLoading(false);
+}
 
   function searchContact(text: string) {
     setSearch(text);
@@ -58,6 +65,17 @@ export default function ContactsScreen() {
     await Clipboard.setStringAsync(number);
     Alert.alert("Copied", "Phone number copied.");
   }
+
+  if (loading) {
+  return (
+    <View style={styles.container}>
+      <ActivityIndicator size="large" />
+      <Text style={{ textAlign: "center", marginTop: 15 }}>
+        Loading Contacts...
+      </Text>
+    </View>
+  );
+}
 
   return (
     <View style={styles.container}>

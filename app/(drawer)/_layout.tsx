@@ -1,4 +1,5 @@
 import { Drawer } from "expo-router/drawer";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function DrawerLayout() {
   return (
@@ -6,7 +7,10 @@ export default function DrawerLayout() {
       <Drawer.Screen
         name="(tabs)"
         options={{
-          title: "Home",
+          title: "Dashboard",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
         }}
       />
 
@@ -14,6 +18,9 @@ export default function DrawerLayout() {
         name="camera"
         options={{
           title: "Camera",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="camera" size={size} color={color} />
+          ),
         }}
       />
 
@@ -21,6 +28,9 @@ export default function DrawerLayout() {
         name="contacts"
         options={{
           title: "Contacts",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="people" size={size} color={color} />
+          ),
         }}
       />
 
@@ -28,6 +38,9 @@ export default function DrawerLayout() {
         name="location"
         options={{
           title: "Location",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="location" size={size} color={color} />
+          ),
         }}
       />
 
@@ -35,6 +48,9 @@ export default function DrawerLayout() {
         name="clipboard"
         options={{
           title: "Clipboard",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="clipboard" size={size} color={color} />
+          ),
         }}
       />
 
@@ -42,6 +58,9 @@ export default function DrawerLayout() {
         name="preview"
         options={{
           title: "Preview",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="eye" size={size} color={color} />
+          ),
         }}
       />
 
@@ -49,6 +68,9 @@ export default function DrawerLayout() {
         name="settings"
         options={{
           title: "Settings",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="settings" size={size} color={color} />
+          ),
         }}
       />
     </Drawer>
